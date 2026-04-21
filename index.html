@@ -1,1 +1,220 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intex | Home</title>
+    <style>
+      :root {
+        --overlay: rgba(0, 0, 0, 0.35);
+        --white: #ffffff;
+        --accent: #1f8fff;
+        --accent-dark: #0b6bca;
+      }
 
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--white);
+        background: #f4f4f4;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        background-image: linear-gradient(var(--overlay), var(--overlay)),
+          url("https://kommodo.ai/i/Tc32h6ivpN3VkTyWh2sb");
+        background-position: center;
+        background-size: cover;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.45) 0%,
+          rgba(0, 0, 0, 0.2) 45%,
+          rgba(0, 0, 0, 0.35) 100%
+        );
+        pointer-events: none;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .topbar {
+        width: min(1200px, calc(100% - 2rem));
+        margin: 1.25rem auto 0;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .menu {
+        justify-self: start;
+      }
+
+      .menu ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .menu a,
+      .contact-btn,
+      .cta {
+        text-decoration: none;
+        color: var(--white);
+      }
+
+      .menu a {
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+
+      .menu a:hover {
+        opacity: 0.85;
+      }
+
+      .contact-actions {
+        justify-self: end;
+        display: flex;
+        gap: 0.65rem;
+      }
+
+      .contact-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 999px;
+        padding: 0.55rem 0.95rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        backdrop-filter: blur(2px);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .contact-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .hero-center {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cta-group {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .cta {
+        min-width: 180px;
+        text-align: center;
+        padding: 0.95rem 1.4rem;
+        border-radius: 999px;
+        font-weight: 700;
+        border: 2px solid transparent;
+        transition: 0.2s ease;
+      }
+
+      .cta.primary {
+        background: var(--accent);
+      }
+
+      .cta.primary:hover {
+        background: var(--accent-dark);
+      }
+
+      .cta.secondary {
+        border-color: rgba(255, 255, 255, 0.9);
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .cta.secondary:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          background-image: linear-gradient(var(--overlay), var(--overlay)),
+            url("https://kommodo.ai/i/pVgIzENOqyyWS6itlv1v");
+        }
+
+        .topbar {
+          grid-template-columns: 1fr;
+          justify-items: center;
+          text-align: center;
+          gap: 0.9rem;
+          margin-top: 1rem;
+        }
+
+        .menu,
+        .contact-actions {
+          justify-self: center;
+        }
+
+        .menu ul {
+          justify-content: center;
+        }
+
+        .hero-center {
+          padding: 0 1rem 2rem;
+        }
+
+        .cta {
+          width: 100%;
+          max-width: 280px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="topbar">
+          <nav class="menu" aria-label="Hoofdmenu">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Over ons</a></li>
+              <li><a href="#">Diensten</a></li>
+              <li><a href="#">Projecten</a></li>
+            </ul>
+          </nav>
+
+          <div class="contact-actions">
+            <a class="contact-btn" href="tel:+31101234567">📞 Bel ons</a>
+            <a class="contact-btn" href="mailto:info@intex.nl">✉️ Mail ons</a>
+          </div>
+        </div>
+
+        <div class="hero-center">
+          <div class="cta-group">
+            <a href="#contact" class="cta primary">Neem contact op</a>
+            <a href="#diensten" class="cta secondary">Onze diensten</a>
+          </div>
+        </div>
+      </div>
+    </header>
+  </body>
+</html>
