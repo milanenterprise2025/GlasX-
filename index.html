@@ -1,306 +1,591 @@
 <!doctype html>
 <html lang="nl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Intex | Home</title>
-    <style>
-      :root {
-        --overlay: rgba(0, 0, 0, 0.35);
-        --white: #ffffff;
-        --accent: #1f8fff;
-        --accent-dark: #0b6bca;
-      }
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GLASX | Glazenwassers- en Reinigingsbedrijf</title>
+  <meta name="description" content="GLASX - glazenwassers- en reinigingsdiensten met meer dan 30 jaar ervaring.">
+  <style>
+    :root{
+      --bg:#f5f8fb;
+      --surface:#ffffff;
+      --ink:#0f1a24;
+      --ink-soft:#4f5e6d;
+      --line:#dbe4ec;
+      --accent:#1c6fa3;
+      --accent-strong:#14587f;
+      --overlay:rgba(9,17,26,.58);
+      --shadow:0 12px 30px rgba(11,23,35,.08);
+      --radius:14px;
+      --radius-sm:10px;
+      --container:1180px;
+      --space-1:.5rem;
+      --space-2:.75rem;
+      --space-3:1rem;
+      --space-4:1.5rem;
+      --space-5:2rem;
+      --space-6:3rem;
+      --space-7:4.5rem;
+      --ease:cubic-bezier(.22,.61,.36,1);
+    }
 
-      * {
-        box-sizing: border-box;
-      }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.5;
+      text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased;
+    }
+    img{max-width:100%;display:block}
+    a{color:inherit}
 
-      body {
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        color: var(--white);
-        background: #f4f4f4;
-      }
+    .container{width:min(100% - 2.5rem,var(--container));margin-inline:auto}
+    .section{padding:var(--space-7) 0}
+    .section-title{
+      margin:0 0 var(--space-2);
+      font-size:clamp(1.7rem,2.4vw,2.4rem);
+      letter-spacing:.01em;
+      line-height:1.15;
+    }
+    .section-subtitle{margin:0;color:var(--ink-soft);max-width:62ch}
 
-      .hero {
-        position: relative;
-        min-height: 100vh;
-        background-image: linear-gradient(var(--overlay), var(--overlay)),
-          url("https://cdn.shopify.com/s/files/1/0965/0385/7476/files/ChatGPT_Image_21_apr_2026_14_43_44.png?v=1776781648");
-        background-position: center;
-        background-size: cover;
-      }
+    .hero{
+      min-height:100svh;
+      position:relative;
+      color:#f4f9ff;
+      isolation:isolate;
+      display:grid;
+      align-items:center;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-2%;
+      background:url("https://primary.jwwb.nl/public/m/c/u/temp-yykrasdfgchjxdtklcxm/Fotosearch_k5373988.jpg") center/cover no-repeat;
+      transform:translateY(var(--hero-shift,0px)) scale(var(--hero-scale,1.03));
+      z-index:-2;
+      will-change:transform;
+    }
+    .hero::after{content:"";position:absolute;inset:0;background:var(--overlay);z-index:-1}
 
-      .hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.45) 0%,
-          rgba(0, 0, 0, 0.2) 45%,
-          rgba(0, 0, 0, 0.35) 100%
-        );
-        pointer-events: none;
-      }
+    .top-actions{
+      position:absolute;
+      top:1rem;
+      left:0;right:0;
+      z-index:15;
+    }
+    .top-actions-inner{
+      width:min(100% - 2.5rem,var(--container));
+      margin-inline:auto;
+      display:flex;
+      justify-content:flex-end;
+      gap:.65rem;
+    }
+    .icon-btn{
+      width:2.7rem;height:2.7rem;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.35);
+      border-radius:999px;
+      color:#f4f9ff;
+      background:rgba(255,255,255,.08);
+      backdrop-filter:blur(6px);
+      transition:transform .26s var(--ease),background .26s var(--ease),border-color .26s var(--ease);
+    }
+    .icon-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.6)}
+    .icon-btn:focus-visible,.btn:focus-visible,.menu-link:focus-visible,.arrow:focus-visible,.dot:focus-visible,.service-card button:focus-visible,input:focus-visible,textarea:focus-visible{
+      outline:3px solid #9ad6ff;
+      outline-offset:2px;
+    }
 
-      .hero-inner {
-        position: relative;
-        z-index: 1;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
+    .hero-grid{width:min(100% - 2.5rem,var(--container));margin-inline:auto}
+    .hero-box{
+      width:min(680px,100%);
+      background:rgba(10,21,31,.54);
+      border:1px solid rgba(255,255,255,.23);
+      backdrop-filter:blur(3px);
+      border-radius:var(--radius);
+      padding:clamp(1.3rem,3vw,2.3rem);
+      box-shadow:var(--shadow);
+      animation:fadeUp .9s var(--ease) both .14s;
+    }
+    .brand{
+      margin:0 0 .75rem;
+      font-size:clamp(2.2rem,6vw,4rem);
+      letter-spacing:.08em;
+      font-weight:700;
+      line-height:1;
+    }
+    .hero p{margin:.3rem 0 0;font-size:clamp(1rem,1.55vw,1.2rem);max-width:52ch}
+    .hero p + p{color:#d6e5f3}
+    .hero-cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.4rem}
+    .btn{
+      border:1px solid transparent;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:600;
+      padding:.78rem 1.2rem;
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      transition:transform .24s var(--ease),background-color .24s var(--ease),color .24s var(--ease),border-color .24s var(--ease);
+    }
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-primary:hover{background:var(--accent-strong);transform:translateY(-2px)}
+    .btn-ghost{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.34);color:#f3f8ff}
+    .btn-ghost:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
 
-      .topbar {
-        width: min(1200px, calc(100% - 2rem));
-        margin: 1.25rem auto 0;
-        display: grid;
-        grid-template-columns: 1fr auto;
-        align-items: center;
-        gap: 1rem;
-      }
+    .menu{
+      position:fixed;
+      inset:0;
+      display:grid;
+      place-items:center;
+      background:rgba(7,14,22,.77);
+      backdrop-filter:blur(8px);
+      opacity:0;
+      visibility:hidden;
+      transition:opacity .3s var(--ease),visibility .3s;
+      z-index:30;
+    }
+    .menu.is-open{opacity:1;visibility:visible}
+    .menu-panel{
+      width:min(560px,calc(100% - 2rem));
+      background:#0f1b28;
+      color:#f4f9ff;
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:var(--radius);
+      padding:2rem;
+    }
+    .menu-list{list-style:none;padding:0;margin:.6rem 0 0;display:grid;gap:.4rem}
+    .menu-link{
+      display:block;
+      padding:.8rem .2rem;
+      border-bottom:1px solid rgba(255,255,255,.1);
+      text-decoration:none;
+      font-size:1.05rem;
+    }
+    .menu-link[aria-current="page"],.menu-link:hover{color:#8ed1ff}
 
-      .menu {
-        justify-self: start;
-        position: relative;
-      }
+    .diensten{background:var(--surface)}
+    .carousel-wrap{margin-top:2rem;position:relative}
+    .carousel-viewport{overflow:hidden}
+    .carousel-track{display:flex;transition:transform .48s var(--ease)}
+    .service-slide{padding:.35rem;flex:0 0 100%}
+    .service-card{
+      height:100%;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:0 8px 22px rgba(10,20,30,.05);
+      overflow:hidden;
+      display:grid;
+      grid-template-rows:auto auto 1fr auto;
+      transition:transform .24s var(--ease),box-shadow .24s var(--ease);
+    }
+    .service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+    .media{aspect-ratio:16/10;overflow:hidden;background:#e7edf3}
+    .media img{width:100%;height:100%;object-fit:cover}
+    .service-content{padding:1.05rem 1.05rem .85rem}
+    .service-content h3{margin:0 0 .55rem;font-size:1.14rem;line-height:1.25}
+    .service-content p{margin:0;color:var(--ink-soft)}
+    .service-actions{padding:0 1.05rem 1.05rem}
+    .service-card button{
+      border:0;background:transparent;color:var(--accent);
+      font-weight:600;padding:0;cursor:pointer
+    }
+    .more-text{
+      margin:.7rem 0 0;
+      color:#324352;
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .35s var(--ease);
+      white-space:pre-line;
+    }
+    .service-card.expanded .more-text{max-height:520px}
 
-      .menu ul {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
+    .carousel-nav{
+      margin-top:1rem;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+    }
+    .arrows{display:flex;gap:.5rem}
+    .arrow{
+      width:2.5rem;height:2.5rem;border-radius:999px;
+      border:1px solid var(--line);background:#fff;display:grid;place-items:center;cursor:pointer
+    }
+    .arrow[disabled]{opacity:.35;cursor:not-allowed}
+    .dots{display:flex;gap:.4rem;flex-wrap:wrap}
+    .dot{width:.62rem;height:.62rem;border-radius:999px;border:0;background:#c9d7e4;cursor:pointer}
+    .dot.active{background:var(--accent)}
 
-      .menu a,
-      .contact-btn,
-      .cta {
-        text-decoration: none;
-        color: var(--white);
-      }
+    .contact-grid{display:grid;grid-template-columns:1.1fr .95fr;gap:2rem;align-items:start}
+    .contact-card,.form-card{
+      background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+      padding:1.4rem;
+      box-shadow:0 8px 24px rgba(11,23,35,.05);
+    }
+    .contact-card p{color:var(--ink-soft);margin:0 0 1rem}
+    .phone-box{padding:.95rem;border:1px dashed #afc2d3;border-radius:var(--radius-sm);background:#f8fbfe}
+    form{display:grid;gap:.9rem}
+    label{font-weight:600;font-size:.95rem}
+    input,textarea{
+      width:100%;font:inherit;color:var(--ink);
+      border:1px solid #c7d4e0;border-radius:12px;background:#fff;
+      padding:.78rem .85rem;
+      transition:border-color .22s var(--ease),box-shadow .22s var(--ease);
+    }
+    textarea{min-height:132px;resize:vertical}
+    input:focus,textarea:focus{border-color:#6aa8d1;box-shadow:0 0 0 3px rgba(28,111,163,.16)}
+    .hp-row{position:absolute;left:-9999px;opacity:0;pointer-events:none}
+    .error{margin-top:.3rem;font-size:.88rem;color:#a72222;min-height:1em}
+    .status{font-size:.92rem;font-weight:600;min-height:1.1em;margin-top:.1rem}
+    .status.ok{color:#0f6a35}
+    .status.fail{color:#a72222}
 
-      .menu a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid rgba(255, 255, 255, 0.45);
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        padding: 0.5rem 0.9rem;
-        font-size: 0.95rem;
-        font-weight: 600;
-      }
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+    .reveal.is-visible{opacity:1;transform:translateY(0)}
 
-      .menu a:hover {
-        background: rgba(255, 255, 255, 0.2);
-      }
+    @media (min-width:760px){.service-slide{flex-basis:50%}}
+    @media (min-width:1050px){.service-slide{flex-basis:33.3333%}}
+    @media (max-width:980px){.contact-grid{grid-template-columns:1fr}}
+    @media (prefers-reduced-motion:reduce){
+      *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+      .hero::before{transform:none!important}
+    }
 
-      .menu-toggle {
-        display: none;
-      }
-
-      .hamburger-btn {
-        display: none;
-      }
-
-      .contact-actions {
-        justify-self: end;
-        display: flex;
-        gap: 0.65rem;
-      }
-
-      .contact-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid rgba(255, 255, 255, 0.7);
-        border-radius: 999px;
-        padding: 0.55rem 0.95rem;
-        font-size: 0.9rem;
-        font-weight: 600;
-        backdrop-filter: blur(2px);
-        background: rgba(255, 255, 255, 0.08);
-      }
-
-      .contact-btn:hover {
-        background: rgba(255, 255, 255, 0.2);
-      }
-
-      .hero-center {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .cta-group {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .cta {
-        min-width: 180px;
-        text-align: center;
-        padding: 0.95rem 1.4rem;
-        border-radius: 999px;
-        font-weight: 700;
-        border: 2px solid transparent;
-        transition: 0.2s ease;
-      }
-
-      .cta.primary {
-        background: var(--accent);
-      }
-
-      .cta.primary:hover {
-        background: var(--accent-dark);
-      }
-
-      .cta.secondary {
-        border-color: rgba(255, 255, 255, 0.9);
-        background: rgba(0, 0, 0, 0.2);
-      }
-
-      .cta.secondary:hover {
-        background: rgba(255, 255, 255, 0.15);
-      }
-
-      @media (max-width: 768px) {
-        .hero {
-          background-image: linear-gradient(var(--overlay), var(--overlay)),
-            url("https://cdn.shopify.com/s/files/1/0965/0385/7476/files/ChatGPT_Image_21_apr_2026_14_47_59.png?v=1776781648");
-        }
-
-        .topbar {
-          grid-template-columns: auto 1fr;
-          justify-items: stretch;
-          align-items: start;
-          gap: 0.9rem;
-          margin-top: 1rem;
-        }
-
-        .menu {
-          justify-self: start;
-        }
-
-        .hamburger-btn {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 46px;
-          height: 46px;
-          border-radius: 999px;
-          border: 1px solid rgba(255, 255, 255, 0.45);
-          background: rgba(255, 255, 255, 0.14);
-          backdrop-filter: blur(10px);
-          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-          cursor: pointer;
-        }
-
-        .hamburger-btn span,
-        .hamburger-btn::before,
-        .hamburger-btn::after {
-          content: "";
-          display: block;
-          width: 18px;
-          height: 2px;
-          border-radius: 2px;
-          background: var(--white);
-          transition: 0.2s ease;
-        }
-
-        .hamburger-btn::before {
-          transform: translateY(-6px);
-        }
-
-        .hamburger-btn::after {
-          transform: translateY(4px);
-        }
-
-        .menu ul {
-          display: none;
-          position: absolute;
-          top: 56px;
-          left: 0;
-          min-width: 200px;
-          padding: 0.75rem;
-          border-radius: 16px;
-          background: rgba(30, 30, 30, 0.45);
-          backdrop-filter: blur(12px);
-          border: 1px solid rgba(255, 255, 255, 0.25);
-          box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
-          flex-direction: column;
-          align-items: stretch;
-        }
-
-        .menu-toggle:checked + .hamburger-btn + ul {
-          display: flex;
-        }
-
-        .menu ul {
-          justify-content: flex-start;
-        }
-
-        .menu a {
-          width: 100%;
-          justify-content: flex-start;
-        }
-
-        .contact-actions {
-          justify-self: end;
-          flex-wrap: wrap;
-          justify-content: flex-end;
-        }
-
-        .hero-center {
-          padding: 0 1rem 2rem;
-        }
-
-        .cta {
-          width: 100%;
-          max-width: 280px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header class="hero">
-      <div class="hero-inner">
-        <div class="topbar">
-          <nav class="menu" aria-label="Hoofdmenu">
-            <input class="menu-toggle" type="checkbox" id="menu-toggle" />
-            <label class="hamburger-btn" for="menu-toggle" aria-label="Open menu">
-              <span></span>
-            </label>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Over ons</a></li>
-              <li><a href="#">Diensten</a></li>
-              <li><a href="#">Projecten</a></li>
-            </ul>
-          </nav>
-
-          <div class="contact-actions">
-            <a class="contact-btn" href="tel:+31101234567">Bel ons</a>
-            <a class="contact-btn" href="mailto:info@intex.nl">Mail ons</a>
-          </div>
+    @keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero section" id="home" aria-label="Hero">
+      <div class="top-actions">
+        <div class="top-actions-inner">
+          <!-- TODO: vervang href met geverifieerd telefoonnummer -->
+          <a class="icon-btn" href="#" aria-label="Bel GLASX">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.08.36 2.22.54 3.4.54a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1C10.4 22 2 13.6 2 3a1 1 0 0 1 1-1h4.5a1 1 0 0 1 1 1c0 1.18.18 2.32.54 3.4a1 1 0 0 1-.24 1z"/></svg>
+          </a>
+          <!-- TODO: vervang href met geverifieerd e-mailadres -->
+          <a class="icon-btn" href="#" aria-label="Mail GLASX">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm2 .5v.4L12 11l7-5.1v-.4zm14 2L12.6 12a1 1 0 0 1-1.2 0L5 7.5V19h14z"/></svg>
+          </a>
+          <button class="icon-btn" type="button" id="menuToggle" aria-expanded="false" aria-controls="siteMenu" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M4 7h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+          </button>
         </div>
+      </div>
 
-        <div class="hero-center">
-          <div class="cta-group">
-            <a href="#contact" class="cta primary">Neem contact op</a>
-            <a href="#diensten" class="cta secondary">Onze diensten</a>
+      <nav class="menu" id="siteMenu" aria-label="Hoofdnavigatie" hidden>
+        <div class="menu-panel">
+          <button class="icon-btn" id="menuClose" type="button" aria-label="Sluit menu" style="margin-left:auto">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"/></svg>
+          </button>
+          <ul class="menu-list">
+            <li><a class="menu-link" href="#home" aria-current="page">Home</a></li>
+            <li><a class="menu-link" href="#diensten">Diensten</a></li>
+            <li><a class="menu-link" href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="hero-grid">
+        <div class="hero-box">
+          <h1 class="brand">GLASX</h1>
+          <p>GlasX is een bedrijf met meer dan 30 jaar ervaring in het wassen van ramen en andere schoonmaakdiensten, ook het reinigen van zonnepanelen is mogelijk.</p>
+          <p>bekijk onze diensten hieronder<br>of neem gerust contact op.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#diensten">Bekijk onze diensten</a>
+            <a class="btn btn-ghost" href="#contact">Neem contact op</a>
           </div>
         </div>
       </div>
-    </header>
-  </body>
+    </section>
+
+    <section class="section diensten" id="diensten" aria-labelledby="diensten-title">
+      <div class="container">
+        <h2 class="section-title reveal" id="diensten-title">Onze diensten</h2>
+        <p class="section-subtitle reveal">Een overzicht van de werkzaamheden van GLASX.</p>
+
+        <div class="carousel-wrap reveal" aria-roledescription="carousel" aria-label="Diensten carousel">
+          <div class="carousel-viewport" id="carouselViewport">
+            <div class="carousel-track" id="carouselTrack">
+              <article class="service-slide">
+                <div class="service-card">
+                  <div class="media"><img src="https://primary.jwwb.nl/public/m/c/u/temp-yykrasdfgchjxdtklcxm/zonnepanelenmachinaalreinigen.jpg" alt="Machinaal reinigen van zonnepanelen" loading="lazy"></div>
+                  <div class="service-content"><h3>Machinaal Reinigen Van Zonnepanelen</h3><p>GlasX is de schoonmaakspecialist voor zonnepanelen.</p></div>
+                  <div class="service-actions"><button type="button" aria-expanded="false">Meer info</button><p class="more-text">GlasX is de schoonmaakspecialist voor zonnepanelen. Wij verbeteren de levensduur van uw zonnepanelen en verhogen het opwekrendement. Onze unieke schoonmaakaanpak is gebaseerd op onze jarenlange ervaring met specialistische reiniging. Dat merkt u aan de kwaliteit.</p></div>
+                </div>
+              </article>
+              <article class="service-slide">
+                <div class="service-card">
+                  <div class="media"><img src="https://primary.jwwb.nl/public/m/c/u/temp-yykrasdfgchjxdtklcxm/ramenwassen.jpg" alt="Ramen wassen" loading="lazy"></div>
+                  <div class="service-content"><h3>Ramen Wassen</h3><p>Altijd schone ramen.</p></div>
+                  <div class="service-actions"><button type="button" aria-expanded="false">Meer info</button><p class="more-text">De voordelen van ramen wassen
+
+• Altijd schone ramen. Glazenwassers hebben door hun jarenlange ervaring en apparatuur geen moeite om uw ramen streep loos schoon te krijgen. Wanneer u er genoeg van heeft om gefrustreerd tegen de strepen op uw ramen aan te kijken is de glazenwasser dan ook het antwoord op dat probleem.
+
+• Een betere lichtinval waardoor uw huis frisser oogt. De lichtinval bepaalt bij huizen hoe fris het oogt. Wanneer de ramen een donkere waas hebben zal het huis donker en somber ogen. Wanneer de ramen daarentegen heldere ramen hebben zal het veel lichter en ruimer lijken binnenshuis. Een huis met schone ramen oogt dan ook mooier en heeft uiteindelijk ook een hogere waarde wanneer u het wil gaan verkopen.
+
+• Uw ramen en kozijnen hebben een langere levensduur. De glazenwasser zal niet alleen de ramen van uw huis in topconditie houden maar ook de kozijnen van uw huis. Wanneer u de ramen en de kozijnen door de glazenwasser laat bijhouden hebben deze dan ook een veel langere levensduur.
+
+De ramen zullen minder snel beschadigd raken doordat er niet met een scherp apparaat op wordt gewerkt en de kozijnen worden beter onderhouden waardoor deze minder snel hoeven te worden geschilderd of vervangen. U investeert dus in de levensduur van uw huis.</p></div>
+                </div>
+              </article>
+              <article class="service-slide">
+                <div class="service-card">
+                  <div class="media"><img src="https://primary.jwwb.nl/public/m/c/u/temp-yykrasdfgchjxdtklcxm/cencx8/trespa-laten-reinigen.jpg?crop=1.2731%3A1&enable=upscale&enable-io=true&width=800" alt="Trespa reiniging" loading="lazy"></div>
+                  <div class="service-content"><h3>Trespa Reiniging</h3><p>Om lang van uw Trespa gevelbekleding te genieten, is het belangrijk om het regelmatig te laten reinigen.</p></div>
+                  <div class="service-actions"><button type="button" aria-expanded="false">Meer info</button><p class="more-text">Trespa materiaal is zeer geliefd bij woning- en utiliteitsbouw vanwege haar duurzaamheid en onderhoudsvriendelijkheid. Het wordt vaak verkocht als onderhoudsvrij materiaal waar je geen omkijken naar hebt, maar je zult snel zien dat het niet helemaal onderhoudsvrij is. Om lang van je Trespa gevelbekleding te genieten, is het belangrijk om het regelmatig te laten reinigen. Na een goede onderhoudsbeurt ziet het materiaal er weer uit als nieuw.</p></div>
+                </div>
+              </article>
+              <article class="service-slide">
+                <div class="service-card">
+                  <div class="media"><img src="https://primary.jwwb.nl/public/m/c/u/temp-yykrasdfgchjxdtklcxm/x7ms8i/nieuwbouwwoningschoonmaken.jpg?crop=1.3333%3A1%2Coffset-x49&enable=upscale&enable-io=true&width=800" alt="Schoonmaak nieuwbouw of na verhuizing" loading="lazy"></div>
+                  <div class="service-content"><h3>Schoonmaak Nieuwbouw Of Na Verhuizing</h3><p>Voor vele particulieren verzorgen wij de nieuwbouw schoonmaak voorafgaand aan de oplevering.</p></div>
+                  <div class="service-actions"><button type="button" aria-expanded="false">Meer info</button><p class="more-text">Voor vele particulieren verzorgen wij de nieuwbouw schoonmaak voorafgaand aan de oplevering. Nadat bouwwerkzaamheden hebben plaatsgevonden is het in eerste instantie van belang dat alle oppervlakken schoongemaakt worden zodat eventuele beschadigingen zichtbaar worden. Ook is het voor de gebruiker zeer wenselijk om een schoon gebouw te betrekken. In principe streven wij ernaar dat de gebruiker na onze werkzaamheden de meubels en inventaris alleen maar binnen hoeft te zetten.</p></div>
+                </div>
+              </article>
+              <article class="service-slide">
+                <div class="service-card">
+                  <div class="media"><img src="https://primary.jwwb.nl/public/m/c/u/temp-yykrasdfgchjxdtklcxm/qlhcnb/schoonmaak-dakgoot.jpg?crop=1%3A1&enable=upscale&enable-io=true&width=800" alt="Dakgoot reiniging" loading="lazy"></div>
+                  <div class="service-content"><h3>Dakgoot Reiniging</h3><p>Goed onderhoud aan uw dakgoten is belangrijk om vochtproblemen en schade aan uw woning of bedrijfspand te voorkomen.</p></div>
+                  <div class="service-actions"><button type="button" aria-expanded="false">Meer info</button><p class="more-text">Goed onderhoud aan uw dakgoten is belangrijk om vochtproblemen en schade aan uw woning of bedrijfspand te voorkomen. Vooral als de herfstperiode is aangebroken zorgen bladeren, mos en takken ervoor dat het water niet goed afgevoerd kan worden. Laat daarom jaarlijks uw dakgoten schoonmaken en controleren. Al vanaf € 4,- per strekkende meter zorgen wij dat uw dakgoten schoon zijn.</p></div>
+                </div>
+              </article>
+              <article class="service-slide">
+                <div class="service-card">
+                  <div class="media"><img src="https://primary.jwwb.nl/public/m/c/u/temp-yykrasdfgchjxdtklcxm/Serre-tuinkas-schoonmaken-wfv01.jpg" alt="Serre overkappingen machinaal reinigen" loading="lazy"></div>
+                  <div class="service-content"><h3>Serre Overkappingen Machinaal Reinigen</h3><p>GlasX maakt ook uw serre weer als nieuw.</p></div>
+                  <div class="service-actions"><button type="button" aria-expanded="false">Meer info</button><p class="more-text">GlasX maakt ook uw serre weer als nieuw. Serre schoonmaken is onze specialiteit! Ondanks dat het soms goed mogelijk is om een serre zelf schoon te maken, maar wel gevaarlijk! Om het dak van uw veranda of terrasoverkapping schoon te houden raden wij u aan deze minstens 1 maal per jaar schoon te laten maken. Door dit periodiek te laten uitvoeren zullen mossen en algen geen kans krijgen zich vast te zetten op uw dak. Afhankelijk van het materiaal van uw overkapping en het vuil dat zich hierop bevindt zullen wij een schoonmaakmethode toepassen om uw overkapping schoon te krijgen. Bij het schoonmaken van uw serre wordt het dakoppervlak van de serre niet betreden. Bij het schoonmaken van serres, veranda’s, overkappingen en gevelafwerking gebruiken wij geen hogedrukspuit omdat dit een grote kans meedraagt op schade. We gebruiken daarentegen het osmose telescoop systeem om op de gewenste plaatsen te komen. Zo hoeven we geen steigers of hoogwerkers te gebruiken wat anders een flinke extra kostenpost zou zijn.</p></div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="carousel-nav">
+            <div class="arrows">
+              <button class="arrow" id="prevBtn" type="button" aria-label="Vorige diensten">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="m15.4 5.4 1.4 1.4-5.2 5.2 5.2 5.2-1.4 1.4L8.8 12z"/></svg>
+              </button>
+              <button class="arrow" id="nextBtn" type="button" aria-label="Volgende diensten">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="m8.6 18.6-1.4-1.4 5.2-5.2-5.2-5.2 1.4-1.4 6.6 6.6z"/></svg>
+              </button>
+            </div>
+            <div class="dots" id="dots" aria-label="Carousel paginering"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 class="section-title reveal" id="contact-title">Contact</h2>
+        <div class="contact-grid reveal">
+          <article class="contact-card">
+            <p>Neem gerust contact op voor vragen of een aanvraag. Vul het formulier in en wij nemen zo snel mogelijk contact met u op.</p>
+            <h3 style="margin:.2rem 0 .6rem">Telefonisch Contact</h3>
+            <div class="phone-box">Telefonische contactgegevens op aanvraag beschikbaar.</div>
+          </article>
+
+          <article class="form-card">
+            <form id="contactForm" novalidate>
+              <div>
+                <label for="naam">Naam *</label>
+                <input id="naam" name="naam" type="text" autocomplete="name" required>
+                <div class="error" data-error-for="naam"></div>
+              </div>
+              <div>
+                <label for="email">E-mailadres *</label>
+                <input id="email" name="email" type="email" autocomplete="email" required>
+                <div class="error" data-error-for="email"></div>
+              </div>
+              <div>
+                <label for="bericht">Bericht *</label>
+                <textarea id="bericht" name="bericht" required></textarea>
+                <div class="error" data-error-for="bericht"></div>
+              </div>
+              <div class="hp-row" aria-hidden="true">
+                <label for="website">Laat dit veld leeg</label>
+                <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+              </div>
+              <button class="btn btn-primary" type="submit">Verzenden</button>
+              <div class="status" id="formStatus" role="status" aria-live="polite"></div>
+            </form>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const menu = document.getElementById('siteMenu');
+      const menuToggle = document.getElementById('menuToggle');
+      const menuClose = document.getElementById('menuClose');
+      const menuLinks = menu.querySelectorAll('a');
+
+      const openMenu = () => {
+        menu.hidden = false;
+        requestAnimationFrame(() => menu.classList.add('is-open'));
+        menuToggle.setAttribute('aria-expanded', 'true');
+        menuClose.focus();
+      };
+
+      const closeMenu = () => {
+        menu.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        setTimeout(() => { if (!menu.classList.contains('is-open')) menu.hidden = true; }, 280);
+        menuToggle.focus();
+      };
+
+      menuToggle.addEventListener('click', openMenu);
+      menuClose.addEventListener('click', closeMenu);
+      menu.addEventListener('click', (e) => { if (e.target === menu) closeMenu(); });
+      menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menu.classList.contains('is-open')) closeMenu();
+      });
+
+      const track = document.getElementById('carouselTrack');
+      const slides = Array.from(track.children);
+      const viewport = document.getElementById('carouselViewport');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const dotsRoot = document.getElementById('dots');
+      let index = 0;
+      let startX = 0;
+      let deltaX = 0;
+
+      const perView = () => window.innerWidth >= 1050 ? 3 : window.innerWidth >= 760 ? 2 : 1;
+      const pages = () => Math.max(1, slides.length - perView() + 1);
+
+      const buildDots = () => {
+        dotsRoot.innerHTML = '';
+        for (let i = 0; i < pages(); i++) {
+          const dot = document.createElement('button');
+          dot.className = 'dot';
+          dot.type = 'button';
+          dot.setAttribute('aria-label', `Ga naar slide ${i + 1}`);
+          dot.addEventListener('click', () => { index = i; update(); });
+          dotsRoot.appendChild(dot);
+        }
+      };
+
+      const update = () => {
+        const max = pages() - 1;
+        if (index < 0) index = 0;
+        if (index > max) index = max;
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        track.style.transform = `translateX(${-index * slideWidth}px)`;
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === max;
+        [...dotsRoot.children].forEach((d, i) => d.classList.toggle('active', i === index));
+      };
+
+      prevBtn.addEventListener('click', () => { index--; update(); });
+      nextBtn.addEventListener('click', () => { index++; update(); });
+
+      viewport.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { index++; update(); }
+        if (e.key === 'ArrowLeft') { index--; update(); }
+      });
+      viewport.tabIndex = 0;
+
+      viewport.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; deltaX = 0; }, {passive:true});
+      viewport.addEventListener('touchmove', (e) => { deltaX = e.touches[0].clientX - startX; }, {passive:true});
+      viewport.addEventListener('touchend', () => {
+        if (Math.abs(deltaX) > 45) { index += deltaX < 0 ? 1 : -1; update(); }
+      });
+
+      window.addEventListener('resize', () => { buildDots(); update(); });
+      buildDots();
+      update();
+
+      document.querySelectorAll('.service-card button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.service-card');
+          const expanded = card.classList.toggle('expanded');
+          btn.setAttribute('aria-expanded', String(expanded));
+          btn.textContent = expanded ? 'Toon minder' : 'Meer info';
+        });
+      });
+
+      const form = document.getElementById('contactForm');
+      const status = document.getElementById('formStatus');
+      const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+      const setError = (name, msg) => {
+        const el = form.querySelector(`[data-error-for="${name}"]`);
+        if (el) el.textContent = msg;
+      };
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        status.textContent = '';
+        status.className = 'status';
+
+        const data = new FormData(form);
+        const naam = String(data.get('naam') || '').trim();
+        const email = String(data.get('email') || '').trim();
+        const bericht = String(data.get('bericht') || '').trim();
+        const website = String(data.get('website') || '').trim();
+
+        let ok = true;
+        setError('naam', ''); setError('email', ''); setError('bericht', '');
+
+        if (!naam) { setError('naam', 'Naam is verplicht.'); ok = false; }
+        if (!email) { setError('email', 'E-mailadres is verplicht.'); ok = false; }
+        else if (!emailRx.test(email)) { setError('email', 'Vul een geldig e-mailadres in.'); ok = false; }
+        if (!bericht) { setError('bericht', 'Bericht is verplicht.'); ok = false; }
+
+        if (website) {
+          status.textContent = 'Verzenden is niet gelukt. Probeer opnieuw.';
+          status.classList.add('fail');
+          return;
+        }
+
+        if (!ok) {
+          status.textContent = 'Controleer de gemarkeerde velden.';
+          status.classList.add('fail');
+          return;
+        }
+
+        status.textContent = 'Uw bericht is klaar om te verzenden. Bedankt voor uw aanvraag.';
+        status.classList.add('ok');
+        form.reset();
+      });
+
+      const revealItems = document.querySelectorAll('.reveal');
+      if (!reduceMotion && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(en => {
+            if (en.isIntersecting) {
+              en.target.classList.add('is-visible');
+              io.unobserve(en.target);
+            }
+          });
+        }, {threshold: .18});
+        revealItems.forEach(el => io.observe(el));
+      } else {
+        revealItems.forEach(el => el.classList.add('is-visible'));
+      }
+
+      if (!reduceMotion) {
+        const hero = document.querySelector('.hero');
+        window.addEventListener('scroll', () => {
+          const y = Math.min(window.scrollY * 0.045, 18);
+          hero.style.setProperty('--hero-shift', `${y}px`);
+          hero.style.setProperty('--hero-scale', `${1.03 + Math.min(window.scrollY / 8000, .01)}`);
+        }, {passive:true});
+      }
+    })();
+  </script>
+</body>
 </html>
