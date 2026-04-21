@@ -27,7 +27,7 @@
         position: relative;
         min-height: 100vh;
         background-image: linear-gradient(var(--overlay), var(--overlay)),
-          url("https://kommodo.ai/i/Tc32h6ivpN3VkTyWh2sb");
+          url("https://cdn.shopify.com/s/files/1/0965/0385/7476/files/ChatGPT_Image_21_apr_2026_14_43_44.png?v=1776781648");
         background-position: center;
         background-size: cover;
       }
@@ -64,6 +64,7 @@
 
       .menu {
         justify-self: start;
+        position: relative;
       }
 
       .menu ul {
@@ -83,12 +84,29 @@
       }
 
       .menu a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        padding: 0.5rem 0.9rem;
         font-size: 0.95rem;
         font-weight: 600;
       }
 
       .menu a:hover {
-        opacity: 0.85;
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+
+      .hamburger-btn {
+        display: none;
       }
 
       .contact-actions {
@@ -158,24 +176,88 @@
       @media (max-width: 768px) {
         .hero {
           background-image: linear-gradient(var(--overlay), var(--overlay)),
-            url("https://kommodo.ai/i/pVgIzENOqyyWS6itlv1v");
+            url("https://cdn.shopify.com/s/files/1/0965/0385/7476/files/ChatGPT_Image_21_apr_2026_14_47_59.png?v=1776781648");
         }
 
         .topbar {
-          grid-template-columns: 1fr;
-          justify-items: center;
-          text-align: center;
+          grid-template-columns: auto 1fr;
+          justify-items: stretch;
+          align-items: start;
           gap: 0.9rem;
           margin-top: 1rem;
         }
 
-        .menu,
-        .contact-actions {
-          justify-self: center;
+        .menu {
+          justify-self: start;
+        }
+
+        .hamburger-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 46px;
+          height: 46px;
+          border-radius: 999px;
+          border: 1px solid rgba(255, 255, 255, 0.45);
+          background: rgba(255, 255, 255, 0.14);
+          backdrop-filter: blur(10px);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+          cursor: pointer;
+        }
+
+        .hamburger-btn span,
+        .hamburger-btn::before,
+        .hamburger-btn::after {
+          content: "";
+          display: block;
+          width: 18px;
+          height: 2px;
+          border-radius: 2px;
+          background: var(--white);
+          transition: 0.2s ease;
+        }
+
+        .hamburger-btn::before {
+          transform: translateY(-6px);
+        }
+
+        .hamburger-btn::after {
+          transform: translateY(4px);
         }
 
         .menu ul {
-          justify-content: center;
+          display: none;
+          position: absolute;
+          top: 56px;
+          left: 0;
+          min-width: 200px;
+          padding: 0.75rem;
+          border-radius: 16px;
+          background: rgba(30, 30, 30, 0.45);
+          backdrop-filter: blur(12px);
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .menu-toggle:checked + .hamburger-btn + ul {
+          display: flex;
+        }
+
+        .menu ul {
+          justify-content: flex-start;
+        }
+
+        .menu a {
+          width: 100%;
+          justify-content: flex-start;
+        }
+
+        .contact-actions {
+          justify-self: end;
+          flex-wrap: wrap;
+          justify-content: flex-end;
         }
 
         .hero-center {
@@ -194,6 +276,10 @@
       <div class="hero-inner">
         <div class="topbar">
           <nav class="menu" aria-label="Hoofdmenu">
+            <input class="menu-toggle" type="checkbox" id="menu-toggle" />
+            <label class="hamburger-btn" for="menu-toggle" aria-label="Open menu">
+              <span></span>
+            </label>
             <ul>
               <li><a href="#">Home</a></li>
               <li><a href="#">Over ons</a></li>
@@ -203,8 +289,8 @@
           </nav>
 
           <div class="contact-actions">
-            <a class="contact-btn" href="tel:+31101234567">📞 Bel ons</a>
-            <a class="contact-btn" href="mailto:info@intex.nl">✉️ Mail ons</a>
+            <a class="contact-btn" href="tel:+31101234567">Bel ons</a>
+            <a class="contact-btn" href="mailto:info@intex.nl">Mail ons</a>
           </div>
         </div>
 
